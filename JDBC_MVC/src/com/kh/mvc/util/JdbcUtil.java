@@ -14,6 +14,7 @@ public class JdbcUtil {
 	
 	public static Connection getConnection() {
 		
+		// JDBC 연결 설정
 		final String URL = "jdbc:oracle:thin:@112.221.156.34:12345:XE";
 		final String USERNAME = "KH24_JAR";
 		final String PASSWORD = "KH1234";
@@ -25,6 +26,7 @@ public class JdbcUtil {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			
 		}
 		
 		return conn;

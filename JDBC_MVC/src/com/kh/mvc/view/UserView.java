@@ -35,6 +35,7 @@ public class UserView {
 			// == 5개 값 필요(USER_NO, USER_ID, USER_PW, USER_NAME, ENROLL_DATE)
 			// → 필요한 값을 사용자가 입력할 수 있도록 유도
 			System.out.println("2. 회원 추가");	
+			System.out.println("3. 비밀번호 수정");	
 			
 			
 			System.out.println("9. 프로그램 종료");
@@ -60,6 +61,8 @@ public class UserView {
 				case 2:
 					insertUser();
 					break;
+				case 3:
+					updatePassword();
 				case 9: 
 					System.out.println("프로그램 종료~👻"); 
 					return;
@@ -160,11 +163,23 @@ public class UserView {
 		} else {
 			System.out.println("회원 추가에 실패했습니다. 다시 시도해주세요.");
 		}
+
+	}
+	
+	private void updatePassword() {
 		
+		System.out.println("--- 비밀번호 변경 페이지입니다. ---");
+		System.out.print("아이디를 입력하세요. > ");
+		String userId = sc.nextLine();
+		System.out.print("새 비밀번호를 입력하세요. > ");
+		String newPassword = sc.nextLine();
 		
-		
-		
-		
+		boolean isUpdated = userController.changePassword(userId, newPassword);
+		if(isUpdated) {
+			System.out.println("비밀번호 수정 성공");
+		} else {
+			System.out.println("비밀번호 수정 실패");
+		}
 		
 		
 	}
