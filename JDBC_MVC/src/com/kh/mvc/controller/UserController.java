@@ -39,12 +39,4 @@ public class UserController {
 		return result;
 	}
 	
-	// 비밀번호 수정
-	public boolean changePassword(String userId, String newPassword) {
-		
-		return userService.changePassword(userId, newPassword);
-	}
-	
-	
-	
 }

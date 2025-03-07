@@ -54,7 +54,4 @@ public class UserDTO {
 		this.enrollDate = enrollDate;
 	}
 	
-	
-	
-	
 }

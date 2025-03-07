@@ -273,35 +273,5 @@ public class UserDAO {
 		return result;
 		
 	}
-	
-	private Connection conn;
-	
-	// 비밀번호 수정
-	public boolean updatePassword(String userId, String newPassword) {
-		String query = "UPDATE TB_USER SET USER_PW = ? WHERE USER_ID = ?";
-		
-		try (PreparedStatement stmt = conn.prepareStatement(query)) {
-			stmt.setString(1, newPassword);
-			stmt.setString(2, userId);
-			int result = stmt.executeUpdate();
-			return result > 0; // 비밀번호 수정 성공 여부 반환
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
-		
-		return false;
-		
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-
-
 
 }

@@ -31,17 +31,4 @@ public class MemberService {
 		
 	}
 	
-	
-	public MemberService() {
-		userDao = new UserDAO();
-	}
-	
-	// 비밀번호 수정
-	public boolean changePassword(String userId, String newPassword) {
-		
-		return userDao.updatePassword(userId, newPassword);
-	
-	}
-	
-	
 }
