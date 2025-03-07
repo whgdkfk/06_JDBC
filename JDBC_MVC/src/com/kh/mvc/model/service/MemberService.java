@@ -31,4 +31,13 @@ public class MemberService {
 		
 	}
 	
+	public int insertUser(UserDTO user) {
+		
+			Connection conn = JdbcUtil.getConnection();
+			
+			int result = userDao.insertUser(conn, user);
+			
+			return result;
+	}
+	
 }

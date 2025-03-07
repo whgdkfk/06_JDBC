@@ -34,7 +34,7 @@ public class UserController {
 		user.setUserPw(userPw);
 		user.setUserName(userName);
 
-		int result = userDao.insertUser(user); 
+		int result = userService.insertUser(user); 
 		user = null;
 		return result;
 	}

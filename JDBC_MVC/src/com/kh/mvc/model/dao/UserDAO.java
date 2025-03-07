@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.mvc.model.dto.UserDTO;
+import com.kh.mvc.util.JdbcUtil;
 
 /**
  * DAO(Data Access Object)
@@ -223,9 +224,8 @@ public class UserDAO {
 	 * @param user 사용자가 입력한 아이디 / 비밀번호 / 이름이 각각 필드에 대입되어 있음
 	 * @return 아직 무엇을 돌려줄지 안 정함
 	 */
-	public int insertUser(UserDTO user) {
+	public int insertUser(Connection conn, UserDTO user) {
 		
-		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
 		String sql = "INSERT INTO TB_USER "
@@ -235,10 +235,7 @@ public class UserDAO {
 		int result = 0;
 		
 		try {
-			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			
-			// AutoCommit 끄기
-			// conn.setAutoCommit(false);
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, user.getUserId());
@@ -247,31 +244,15 @@ public class UserDAO {
 			
 			result = pstmt.executeUpdate();
 			
-			
-		} catch (SQLException e) {
+		} catch(SQLException e) {
 			e.printStackTrace();
-			
 		} finally {
-			
-				try {
-					// 숏 서킷(Short-Circuit)
-					// 조건문에서 논리 연산자 && (AND)와 || (OR)를 사용할 때 
-					// 왼쪽 피연산자의 결과만으로 전체 연산의 결과가 확정되면 
-					// 오른쪽 피연산자의 평가를 생략하는 최적화 기법
-					if(pstmt != null && !pstmt.isClosed()) pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				} 
-				try {
-					if(conn != null) conn.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				} 
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
 		}
-		
-		// Controller로 돌아감
 		return result;
-		
 	}
+
+
 
 }
