@@ -15,7 +15,6 @@ import com.kh.mvc.model.service.MemberService;
  */
 public class UserController {
 	
-	private UserDAO userDao = new UserDAO();
 	private MemberService userService = new MemberService();
 	
 	public List<UserDTO> findAll() {
